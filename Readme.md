@@ -61,6 +61,12 @@ Copy uf2 to disk.
 
 tinygo flash -target=pico2-w ./hello.go
 
+Linux:
+
+tinygo flash -target=pico2-w ./main.go -port=/dev/ttyACM0
+or
+tinygo build -o main.uf2 -target=pico2-w ./main.go
+
 ## Programming
 
 ### Drivers
