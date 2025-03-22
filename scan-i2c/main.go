@@ -20,8 +20,12 @@ import (
 
 func main() {
 
-	machine.I2C0.Configure(machine.I2CConfig{
+	time.Sleep(time.Second)
+	println("Start I2C scanner")
+	machine.I2C1.Configure(machine.I2CConfig{
 		Frequency: 100 * machine.KHz,
+		//SCL: machine.I2C1_SCL_PIN,
+		//SDA: machine.I2C1_SDA_PIN,
 	})
 
 	w := []byte{}
@@ -30,7 +34,7 @@ func main() {
 
 	println("Scanning...")
 	for address := uint16(1); address < 127; address++ {
-		if err := machine.I2C0.Tx(address, w, r); err == nil { // try read a byte from the current address
+		if err := machine.I2C1.Tx(address, w, r); err == nil { // try read a byte from the current address
 			fmt.Printf("I2C device found at address %#X !\n", address)
 			nDevices++
 		}
