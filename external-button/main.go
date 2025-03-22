@@ -3,7 +3,6 @@ package main
 import (
 	"machine"
 	"time"
-	_ "fmt"
 )
 
 func main() {
@@ -11,9 +10,9 @@ func main() {
 	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
 	// button := machine.D2 // Arduino Uno
-	button := machine.GP22
+	button := machine.GP22  // Raspberry Pi Pico
 	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//fmt.Println("Press the button!")
+	println("Press the button!")
 
 	for {
 		// if the button is low (pressed)
