@@ -12,26 +12,32 @@ package main
 import (
 	"machine"
 
-	"image/color"
+	_ "image/color"
 	"time"
 
 	"tinygo.org/x/drivers/ssd1306"
 )
 
 func main() {
-	machine.I2C0.Configure(machine.I2CConfig{
-		Frequency: machine.TWI_FREQ_400KHZ,
+	time.Sleep(1 * time.Second)
+	println("Start Oled display")
+
+	machine.I2C1.Configure(machine.I2CConfig{
+		Frequency: 100 * machine.KHz,
 	})
 
-	display := ssd1306.NewI2C(machine.I2C0)
+	display := ssd1306.NewI2C(machine.I2C1)
 	display.Configure(ssd1306.Config{
 		Address: 0x3C,
 		Width:   128,
 		Height:  64,
 	})
 
+	display.ClearBuffer()
 	display.ClearDisplay()
-
+	display.Tx([]byte("Hello, world!"), true)
+	display.Display()
+/*
 	x := int16(0)
 	y := int16(0)
 	deltaX := int16(1)
@@ -57,4 +63,5 @@ func main() {
 		}
 		time.Sleep(1 * time.Millisecond)
 	}
+		*/
 }
