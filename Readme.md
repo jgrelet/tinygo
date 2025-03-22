@@ -88,7 +88,7 @@ For Pico-series devices, BOOTSEL mode lives in read-only memory inside the RP204
 
     Download the UF2 file:
     
-    https://datasheets.raspberrypi.com/soft/flash_nuke.uf2
+https://datasheets.raspberrypi.com/soft/flash_nuke.uf2
 
 
 
