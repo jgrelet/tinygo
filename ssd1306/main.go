@@ -24,14 +24,18 @@ func main() {
 
 	//font library init
 	display := font.NewDisplay(dev)
-	display.Configure(font.Config{FontType: font.FONT_7x10}) //set font here
+	display.Configure(font.Config{FontType: font.FONT_6x8}) //set font here
 
 	display.YPos = 0                 // set position Y
 	display.XPos = 0                  // set position X
 	display.PrintText("Hello World!") // print text
-	display.YPos = 20                // set position Y
+	display.YPos = 12                // set position Y
 	display.XPos = 0                  // set position X
 	display.PrintText("Temp = 20 C") // print text
+	display.YPos = 24               // set position Y
+	display.XPos = 0                  // set position X
+	display.PrintText("Pres = 1023 mb") // print text
+
 
 	for {
 
