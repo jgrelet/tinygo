@@ -1,0 +1,39 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  target: pico2-w
+  stacksize: 8kb
+  DIRS: blinky helloworld  external_button scan-i2c ssd1306 # ntp-client
+
+# example: task build-helloworld
+# example: task flash-blinky
+tasks:
+  build-*:
+    vars:
+      ARG: '{{index .MATCH 0}}'
+    cmds:
+      - cd {{.ARG}}
+      - tinygo build -o ./{{.ARG}}/flash.uf2 -target={{.target}} -stack-size={{.stacksize}}  ./{{.ARG}}/main.go
+
+  buildall:
+    cmds:
+      - for: {var: DIRS}
+        cmd: tinygo build -o ./{{.ITEM}}/flash.uf2 -target={{.target}} -size short -stack-size={{.stacksize}} -monitor  ./{{.ITEM}}/main.go
+
+  flash-*:
+    vars:
+      ARG: '{{index .MATCH 0}}'
+    cmds:
+      - tinygo flash -target={{.target}} -size short -stack-size={{.stacksize}} -monitor  ./{{.ARG}}/
+
+  flashall:
+    cmds:
+      - for: {var: DIRS}
+        cmd: tinygo flash -target={{.target}} -size short -stack-size={{.stacksize}} -monitor  ./{{.ITEM}}/
+
+  clean:
+    cmds:
+      - for: {var: DIRS}
+        cmd: rm -f ./{{.ITEM}}/*.uf2

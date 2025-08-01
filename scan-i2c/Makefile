@@ -1,4 +1,4 @@
-TARGET = pico-w
+TARGET = pico2-w
 SOURCE = main.go
 BINARY = main.uf2
 #LDFLAGS = -size short -monitor -scheduler tasks -gc=conservative -size=full -stack-size=20kb
