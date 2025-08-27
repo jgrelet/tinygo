@@ -1,3 +1,5 @@
+TinyGo is a Go Compiler For Small Places. It allows Go to start getting involved with microcontrollers, embedded systems.
+
 ## Install TinyGo
 
 https://tinygo.org/docs/
@@ -6,7 +8,7 @@ Install: https://tinygo.org/getting-started/install/
 
 ### Windows
 
-Quick Install via Scoop
+Quick Install via [Scoop](https://mrotaru.co.uk/blog/windows-package-manager-scoop/)
 
 You can use Scoop to install TinyGo and dependencies.
 
@@ -23,7 +25,7 @@ Your $PATH environment variable will be updated via the scoop package. By defaul
 You can test that the installation was successful by running the version command which should display the version number:
 
 > tinygo version
-tinygo version 0.36.0 windows/amd64 (using go version go1.24 and LLVM version 19.1.2)
+> tinygo version 0.36.0 windows/amd64 (using go version go1.24 and LLVM version 19.1.2)
 
 ### Linux
 
@@ -53,21 +55,41 @@ Connect a push button between the RUN pin (pin 30) on your Pico and ground.
 Create the directory
 
 Open the command palette (Ctrl+Maj+P) and search for TinyGo target.
-This sett the right environment variables in the .vscode/settings.json of your workspace. If target is pico2-w:
+This set the right environment variables in the .vscode/settings.json of your workspace. If target is pico2-w:
 
-go mod init c/git/Golang/tinygo/tests/helloworld
+``` bash
+ go mod init c/git/Golang/tinygo/tests/helloworld
 go mod tidy
 tinygo build -target=pico2-w -o helloworld.uf2 helloworld.go
+```
 
 Copy uf2 to disk.
 
-tinygo flash -target=pico2-w ./hello.go
+> tinygo flash -target=pico2-w ./hello.go
+
+To see the output of the program, you can use a serial monitor.
+Test available ports with ports option:
+
+``` bash
+> $ tinygo ports
+> Port                 ID        Boards
+> COM3                     :     
+> COM9                 2E8A:000A pico2-w
+```
+
+Display program output:
+
+> $ tinygo monitor -target=pico2-w
+> Connected to COM9. Press Ctrl-C to exit.
+> hello world!
+> hello world!
+> ...
 
 Linux:
 
-tinygo flash -target=pico2-w ./main.go -port=/dev/ttyACM0
+> tinygo flash -target=pico2-w ./main.go -port=/dev/ttyACM0
 or
-tinygo build -o main.uf2 -target=pico2-w ./main.go
+> tinygo build -o main.uf2 -target=pico2-w ./main.go
 
 ## Programming
 
