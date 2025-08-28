@@ -5,7 +5,7 @@ version: '3'
 vars:
   target: pico2-w
   stacksize: 8kb
-  DIRS: blinky helloworld  external_button scan-i2c ssd1306 # ntp-client
+  DIRS: blinky helloworld  external-button scan-i2c ssd1306 # ntp-client
 
 # example: task build-helloworld
 # example: task flash-blinky

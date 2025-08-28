@@ -1,10 +1,10 @@
-module tinygo/ssd106
+module ssd1306
 
-go 1.24.1
+go 1.24.3
 
 require (
 	github.com/Nondzu/ssd1306_font v1.0.1
-	tinygo.org/x/drivers v0.31.0
+	tinygo.org/x/drivers v0.32.0
 )
 
 require github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect

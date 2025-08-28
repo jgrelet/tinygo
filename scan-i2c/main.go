@@ -24,8 +24,8 @@ func main() {
 	println("Start I2C scanner")
 	machine.I2C1.Configure(machine.I2CConfig{
 		Frequency: 100 * machine.KHz,
-		//SCL: machine.I2C1_SCL_PIN,
-		//SDA: machine.I2C1_SDA_PIN,
+		SCL: machine.I2C1_SCL_PIN,
+		SDA: machine.I2C1_SDA_PIN,
 	})
 
 	w := []byte{}

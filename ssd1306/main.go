@@ -14,7 +14,13 @@ func main() {
 
 	time.Sleep(time.Second)
 	println("Start Oled display") // Please wait some time after turning on the device to properly initialize the display
-	machine.I2C1.Configure(machine.I2CConfig{Frequency: 400000})
+	machine.I2C1.Configure(machine.I2CConfig{
+		Frequency: 100 * machine.KHz,
+		SCL: machine.I2C1_SCL_PIN,
+		SDA: machine.I2C1_SDA_PIN
+	})
+	
+	//machine.I2C1.Configure(machine.I2CConfig{Frequency: 400000})
 
 	// Display
 	dev := ssd1306.NewI2C(machine.I2C1)
