@@ -48,6 +48,7 @@ See: https://tinygo.org/docs/guides/ide-integration/vscode/
 https://pragmatik.tech/set-up-your-pico-with-tinygo-and-vscode
 
 Install a Reset Button:
+
 Connect a push button between the RUN pin (pin 30) on your Pico and ground.
 
 ## Use it
@@ -58,7 +59,7 @@ Open the command palette (Ctrl+Maj+P) and search for TinyGo target.
 This set the right environment variables in the .vscode/settings.json of your workspace. If target is pico2-w:
 
 ``` bash
- go mod init c/git/Golang/tinygo/tests/helloworld
+go mod init c/git/Golang/tinygo/tests/helloworld
 go mod tidy
 tinygo build -target=pico2-w -o helloworld.uf2 helloworld.go
 ```
@@ -71,25 +72,29 @@ To see the output of the program, you can use a serial monitor.
 Test available ports with ports option:
 
 ``` bash
-> $ tinygo ports
-> Port                 ID        Boards
-> COM3                     :     
-> COM9                 2E8A:000A pico2-w
+tinygo ports
+Port                 ID        Boards
+COM3                     :     
+COM9                 2E8A:000A pico2-w
 ```
 
 Display program output:
 
-> $ tinygo monitor -target=pico2-w
-> Connected to COM9. Press Ctrl-C to exit.
-> hello world!
-> hello world!
-> ...
+``` bash
+tinygo monitor -target=pico2-w
+Connected to COM9. Press Ctrl-C to exit.
+hello world!
+hello world!
+...
+```
 
 Linux:
 
-> tinygo flash -target=pico2-w ./main.go -port=/dev/ttyACM0
+``` bash
+tinygo flash -target=pico2-w ./main.go -port=/dev/ttyACM0
 or
-> tinygo build -o main.uf2 -target=pico2-w ./main.go
+tinygo build -o main.uf2 -target=pico2-w ./main.go
+```
 
 ## Programming
 
