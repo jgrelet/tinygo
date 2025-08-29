@@ -1,4 +1,4 @@
-TARGET = pico-w
+TARGET = pico2-w
 SOURCE = helloworld.go
 BINARY = main.uf2
 LDFLAGS = -size short
