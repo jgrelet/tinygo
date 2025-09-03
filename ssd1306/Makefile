@@ -1,4 +1,4 @@
-TARGET = pico2-w
+TARGET = pico-w
 SOURCE = main.go
 BINARY = main.uf2
 LDFLAGS = -size short -monitor
@@ -6,9 +6,11 @@ LDFLAGS = -size short -monitor
 build:
 	tinygo build -o $(BINARY) $(LDFLAGS) -target $(TARGET) $(SOURCE)
 
-run:
+flash:
 	tinygo flash $(LDFLAGS) -target $(TARGET) $(SOURCE)
-	
+
+monitor: 
+	tinygo monitor -target=$(TARGET)	
 
 fmt:
 	go fmt *.go

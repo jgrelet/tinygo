@@ -22,10 +22,23 @@ func main() {
 
 	time.Sleep(time.Second)
 	println("Start I2C scanner")
+	// Configure I2C using pins specific to the board
+	// See https://tinygo.org/docs/reference/microcontrollers/raspberrypi/
+	// for the pin mapping of your board.
+	//
+	// On Raspberry Pi Pico the I2C1 bus is available on multiple pins:
+	// - GP2 (SCL) and GP3 (SDA)
+	// - GP6 (SCL) and GP7 (SDA)
+	// - GP10 (SCL) and GP11 (SDA)
+	//
+	// The default I2C1 pins are GP3 and GP4, so we use those here.
+	// Pin 	Hardware pin 	Alternative names
+	// GP3 	GPIO3 	I2C1_SCL_PIN
+	// GP4 	GPIO4 	I2C1_SDA_PIN
 	machine.I2C1.Configure(machine.I2CConfig{
 		Frequency: 100 * machine.KHz,
-		SCL: machine.I2C1_SCL_PIN,
-		SDA: machine.I2C1_SDA_PIN,
+		//SCL: machine.I2C1_SCL_PIN,
+		//SDA: machine.I2C1_SDA_PIN,
 	})
 
 	w := []byte{}

@@ -11,7 +11,7 @@ build:
 flash:
 	tinygo flash $(LDFLAGS) -target $(TARGET) $(SOURCE)
 	
-run: 
+monitor: 
 	tinygo monitor -target=$(TARGET)
 
 fmt:

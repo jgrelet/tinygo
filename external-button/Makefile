@@ -9,7 +9,9 @@ build:
 run:
 	tinygo flash $(LDFLAGS) -target $(TARGET) $(SOURCE)
 	
-
+monitor: 
+	tinygo monitor -target=$(TARGET)	
+	
 fmt:
 	go fmt *.go
 

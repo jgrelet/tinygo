@@ -15,8 +15,8 @@ import (
 func main() {
 	time.Sleep(time.Second)
 	println("Start blinking")
-	//led := machine.LED
-	led := machine.GP15 // pin 20
+	led := machine.LED
+	//led := machine.GP25 
 	led.Configure(machine.PinConfig{
 		Mode: machine.PinOutput,
 	})

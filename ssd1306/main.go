@@ -12,20 +12,26 @@ import (
 
 func main() {
 
+	var (
+		with int16 = 128
+		height int16 = 32
+		//height int16 = 64
+	)
 	time.Sleep(time.Second)
 	println("Start Oled display") // Please wait some time after turning on the device to properly initialize the display
+	
+	// The default I2C1 pins are GP3 and GP4, so we use those here.
 	machine.I2C1.Configure(machine.I2CConfig{
 		//Frequency: 400000,
 		Frequency: 400 * machine.KHz,
-		SCL: machine.I2C1_SCL_PIN,
-		SDA: machine.I2C1_SDA_PIN,
+		// SCL: machine.I2C1_SCL_PIN,
+		// SDA: machine.I2C1_SDA_PIN,
 	})
-	
 	//machine.I2C1.Configure(machine.I2CConfig{Frequency: 400000})
 
 	// Display
 	dev := ssd1306.NewI2C(machine.I2C1)
-	dev.Configure(ssd1306.Config{Width: 128, Height: 64, Address: 0x3C, VccState: ssd1306.SWITCHCAPVCC})
+	dev.Configure(ssd1306.Config{Width: with, Height: height, Address: 0x3C, VccState: ssd1306.SWITCHCAPVCC})
 	dev.ClearBuffer()
 	dev.ClearDisplay()
 

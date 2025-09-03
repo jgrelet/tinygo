@@ -1,4 +1,4 @@
-TARGET = pico2-w
+TARGET = pico-w
 SOURCE = main.go
 BINARY = main.uf2
 #LDFLAGS = -size short -monitor -scheduler tasks -gc=conservative -size=full -stack-size=20kb
@@ -10,7 +10,7 @@ build:
 flash:
 	tinygo flash $(LDFLAGS) -target $(TARGET) $(SOURCE)
 	
-run: 
+monitor: 
 	tinygo monitor -target=$(TARGET)
 
 fmt:
