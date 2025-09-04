@@ -14,18 +14,24 @@ You can use Scoop to install TinyGo and dependencies.
 
 If you haven’t installed Go already, you can do so with the following command:
 
-> scoop install go
+``` bash
+scoop install go
+```
 
 Followed by TinyGo itself:
 
-> scoop install tinygo
+``` bash
+scoop install tinygo
+```
 
 Your $PATH environment variable will be updated via the scoop package. By default a shim is created in ~/scoop/shims/tinygo.
 
 You can test that the installation was successful by running the version command which should display the version number:
 
-> tinygo version
-> tinygo version 0.36.0 windows/amd64 (using go version go1.24 and LLVM version 19.1.2)
+``` bash
+tinygo version
+tinygo version 0.36.0 windows/amd64 (using go version go1.24 and LLVM version 19.1.2)
+```
 
 ### Linux
 
@@ -68,7 +74,9 @@ tinygo build -target=pico2-w -o helloworld.uf2 helloworld.go
 
 Copy uf2 to disk.
 
-> tinygo flash -target=pico2-w ./hello.go
+``` bash
+tinygo flash -target=pico2-w ./hello.go
+```
 
 To see the output of the program, you can use a serial monitor.
 Test available ports with ports option:
