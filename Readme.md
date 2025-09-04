@@ -39,6 +39,8 @@ https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico
 
 The Pinout Diagram [PDF](https://datasheets.raspberrypi.com/pico/Pico-2-Pinout.pdf)
 
+Tinygo [Interface and Pin diagram](https://tinygo.org/docs/reference/microcontrollers/pico2-w/)
+
 ## Install Visual Studio Code support for TinyGo
 
 https://marketplace.visualstudio.com/items?itemName=tinygo.vscode-tinygo
