@@ -43,7 +43,7 @@ https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico
 
 ![417682171-89be49a1-b381-4cd1-b109-21f744a02b64](https://github.com/user-attachments/assets/37f50285-c34e-4ee5-be57-5646e404991e)
 
-The Pinout Diagram [PDF](https://datasheets.raspberrypi.com/pico/Pico-2-Pinout.pdf)
+The Pinout Diagram [PDF](https://datasheets.raspberrypi.com/pico/Pico-2-Pinout.pdf) and Raspberry Pi Pico and Pico W Pinout Guide: [GPIOs Explained](https://randomnerdtutorials.com/raspberry-pi-pico-w-pinout-gpios)
 
 Tinygo [Interface and Pin diagram](https://tinygo.org/docs/reference/microcontrollers/pico2-w/)
 
