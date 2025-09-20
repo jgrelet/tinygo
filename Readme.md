@@ -51,11 +51,13 @@ Tinygo [Interface and Pin diagram](https://tinygo.org/docs/reference/microcontro
 
 https://marketplace.visualstudio.com/items?itemName=tinygo.vscode-tinygo
 
-See: https://tinygo.org/docs/guides/ide-integration/vscode/
+https://tinygo.org/docs/guides/ide-integration/vscode/
 
 https://pragmatik.tech/set-up-your-pico-with-tinygo-and-vscode
 
-Install a Reset Button:
+To use it, click on the TinyGo item in the status bar at the bottom of the screen and select a target. You can also open the command palette, search for the TinyGo target, and select your target. In our example, a pico-w or pico2-w board.
+
+## Install a Reset Button
 
 Connect a push button between the RUN pin (pin 30) on your Pico and ground.
 
@@ -67,7 +69,7 @@ Open the command palette (Ctrl+Maj+P) and search for TinyGo target.
 This set the right environment variables in the .vscode/settings.json of your workspace. If target is pico2-w:
 
 ``` bash
-go mod init c/git/Golang/tinygo/tests/helloworld
+go mod init <your path>/tinygo/tests/helloworld
 go mod tidy
 tinygo build -target=pico2-w -o helloworld.uf2 helloworld.go
 ```
@@ -78,8 +80,8 @@ Copy uf2 to disk.
 tinygo flash -target=pico2-w ./hello.go
 ```
 
-To see the output of the program, you can use a serial monitor.
-Test available ports with ports option:
+To view the program output, you can use a serial monitor.
+Test the available ports with the ports option:
 
 ``` bash
 tinygo ports
@@ -97,6 +99,15 @@ hello world!
 hello world!
 ...
 ```
+It is also possible to flash the program and launch monitor mode to display the result with the following option:
+``` bash
+tinygo flash -monitor -target=pico2-w ./hello.go
+```
+
+Use the -size option to reduce the size of the binary
+``` bash
+tinygo flash -monitor -size short -target=pico2-w ./hello.go
+```
 
 Linux:
 
@@ -105,6 +116,12 @@ tinygo flash -target=pico2-w ./main.go -port=/dev/ttyACM0
 or
 tinygo build -o main.uf2 -target=pico2-w ./main.go
 ```
+
+When using monitor mode, it is essential to set a delay of 1 to 2 seconds at the start of the main function, otherwise the first outputs will not be visible on the serial device (USB).
+
+The GOROOT variable defines a cache directory under <user>/AppData/Local/tinygo/goroot-2aa6dda4...
+When inconsistent compilation issues occur, you can clear this cache using the clean option.
+Then reselect the target under VSC.
 
 ## Programming
 
