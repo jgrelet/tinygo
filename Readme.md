@@ -123,7 +123,13 @@ When using monitor mode, it is essential to set a delay of 1 to 2 seconds at the
 
 The GOROOT variable defines a cache directory under <user>/AppData/Local/tinygo/goroot-2aa6dda4...
 When inconsistent compilation issues occur, you can clear this cache using the clean option.
-Then reselect the target under VSC.
+Then reselect the target under VSC and restart it.
+Check environment variables GOROOT with go env command:
+
+``` bash
+go env GOROOT
+```
+
 
 When you deploy your modules after testing them on GitHub and changing the path names, the following error may occur:
 
@@ -133,7 +139,7 @@ go: github.com/<path>/project: parsing go.mod:
     but was required as: github.com/<path>/project
 ```
 
-Even when I run <code>go get -u github.com/<path>/project</code> or
+Even when I run <code>go get -u github.com/\<path\>/project</code> or
 <code>go mod tidy</code>
 
 In this case, execute:
