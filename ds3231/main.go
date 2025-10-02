@@ -14,12 +14,25 @@ import (
 //   tinygo flash ... -ldflags="-X main.buildTime=2025-09-27T06:30:00Z"
 var buildTime string // RFC3339, ex: 2006-01-02T15:04:05Z07:00
 
-func must(err error) {
+/* func check(err error) {
 	if err != nil {
 		println("ERR:", err.Error())
 		panic(err) // stoppe le programme
 	}
+} */
+
+func mustRetry(n int, delay time.Duration, f func() error) {
+	for i := 0; i < n; i++ {
+		if err := f(); err == nil {
+			return
+		} else if i == n-1 {
+			println("ERR:", err.Error())
+			panic(err)
+		}
+		time.Sleep(delay)
+	}
 }
+
 
 func main() {
 
@@ -47,13 +60,16 @@ func main() {
 
 	// Si l'oscillateur n'est pas en marche, on le démarre.
 	if !rtc.IsRunning() {
-		must(rtc.SetRunning(true))
+		//check(rtc.SetRunning(true))
+		mustRetry(5, 200*time.Millisecond, func() error { return rtc.SetRunning(true) })
+
 	}
 
 	// Mettre à l'heure depuis une valeur injectée (buildTime) :
 	if len(buildTime) > 0 && !rtc.IsTimeValid() {
 		if t, err := time.Parse(time.RFC3339, buildTime); err == nil {
-			must(rtc.SetTime(t.UTC()))
+			//check(rtc.SetTime(t.UTC()))
+			mustRetry(5, 200*time.Millisecond, func() error { return rtc.SetTime(t.UTC()) })
 			println("RTC set with buildTime:", t.UTC().Format(time.RFC3339))
 		} else {
 			println("buildTime invalide, ignore")
@@ -65,7 +81,11 @@ func main() {
 		time.Sleep(1 * time.Second)
 		// Lire l'heure "RTC"
 		t, _ := rtc.ReadTime()
-		fmt.Printf("DS3231: %s\n", t.Format("15:04:05 02/01/2006"))
-		//fmt.Printf("Temp DS3231: %.2f°C\n", rtc.Temperature())
+		temp, _ := rtc.ReadTemperature()
+		T := float32(temp)/1000.0 // en °C
+		// Afficher l'heure
+		//fmt.Printf("DS3231: %s\n", t.Format("15:04:05 02/01/2006"))
+		// Afficher l'heure et la température
+		fmt.Printf("DS3231: %s, Temp: %3.0f°C\n", t.Format("15:04:05 02/01/2006"), T)
 	}
 }
