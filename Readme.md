@@ -57,6 +57,19 @@ https://pragmatik.tech/set-up-your-pico-with-tinygo-and-vscode
 
 To use it, click on the TinyGo item in the status bar at the bottom of the screen and select a target. You can also open the command palette, search for the TinyGo target, and select your target. In our example, a pico-w or pico2-w board.
 
+For example, it may set the following configuration to work with the Raspberry Pico2-w:
+
+``` bash
+{
+    "go.toolsEnvVars": {
+        "GOOS": "linux",
+        "GOARCH": "arm",
+        "GOROOT": "C:\\Users\\yourName\\AppData\\Local\\tinygo\\goroot-fe15d27687627bb9dacd906a845880b8406b8c133b7c087813b7f5767641f01a",
+        "GOFLAGS": "-tags=cortexm,baremetal,linux,arm,rp2350,rp,pico2,pico2-w,cyw43439,tinygo,purego,osusergo,math_big_pure_go,gc.conservative,scheduler.cores,serial.usb"
+    }
+}
+```
+
 ## Install a Reset Button
 
 Connect a push button between the RUN pin (pin 30) on your Pico and ground.
@@ -121,6 +134,12 @@ tinygo build -o main.uf2 -target=pico2-w ./main.go
 
 When using monitor mode, it is essential to set a delay of 1 to 2 seconds at the start of the main function, otherwise the first outputs will not be visible on the serial device (USB).
 
+``` go
+import "time"
+
+    time.Sleep(time.Second)
+``` 
+
 The GOROOT variable defines a cache directory under <user>/AppData/Local/tinygo/goroot-2aa6dda4...
 When inconsistent compilation issues occur, you can clear this cache using the clean option.
 Then reselect the target under VSC and restart it.
@@ -167,7 +186,7 @@ https://github.com/tinygo-org/awesome-tinygo
 
 For Pico-series devices, BOOTSEL mode lives in read-only memory inside the RP2040 or RP2350 chip, and can’t be overwritten accidentally. No matter what, if you hold down the BOOTSEL button when you plug in your Pico, it will appear as a drive onto which you can drag a new UF2 file. There is no way to brick the board through software. However, there are some circumstances where you might want to make sure your flash memory is empty. You can do this by dragging and dropping a special UF2 binary onto your Pico when it is in mass storage mode.
 
-    Download the UF2 file:
+## Download the UF2 file:
     
 https://datasheets.raspberrypi.com/soft/flash_nuke.uf2
 
