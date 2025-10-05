@@ -134,6 +134,12 @@ tinygo build -o main.uf2 -target=pico2-w ./main.go
 
 When using monitor mode, it is essential to set a delay of 1 to 2 seconds at the start of the main function, otherwise the first outputs will not be visible on the serial device (USB).
 
+``` go
+import "time"
+
+    time.Sleep(time.Second)
+``` 
+
 The GOROOT variable defines a cache directory under <user>/AppData/Local/tinygo/goroot-2aa6dda4...
 When inconsistent compilation issues occur, you can clear this cache using the clean option.
 Then reselect the target under VSC and restart it.
