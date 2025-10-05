@@ -57,6 +57,19 @@ https://pragmatik.tech/set-up-your-pico-with-tinygo-and-vscode
 
 To use it, click on the TinyGo item in the status bar at the bottom of the screen and select a target. You can also open the command palette, search for the TinyGo target, and select your target. In our example, a pico-w or pico2-w board.
 
+For example, it may set the following configuration to work with the Raspberry Pico2-w:
+
+``` bash
+{
+    "go.toolsEnvVars": {
+        "GOOS": "linux",
+        "GOARCH": "arm",
+        "GOROOT": "C:\\Users\\yourName\\AppData\\Local\\tinygo\\goroot-fe15d27687627bb9dacd906a845880b8406b8c133b7c087813b7f5767641f01a",
+        "GOFLAGS": "-tags=cortexm,baremetal,linux,arm,rp2350,rp,pico2,pico2-w,cyw43439,tinygo,purego,osusergo,math_big_pure_go,gc.conservative,scheduler.cores,serial.usb"
+    }
+}
+```
+
 ## Install a Reset Button
 
 Connect a push button between the RUN pin (pin 30) on your Pico and ground.
