@@ -65,10 +65,6 @@ func main() {
 		SDA: machine.I2C1_SDA_PIN,
 	})
 
-	/* w := []byte{}
-	r := []byte{0} // shall pass at least one byte for I2C code to at all try to communicate
-	nDevices := 0 */
-
 	println("Scanning I2C1...")
 	for address := uint16(1); address < 127; address++ {
 		if err := machine.I2C1.Tx(address, w, r); err == nil { // try read a byte from the current address
@@ -82,8 +78,5 @@ func main() {
 	} else {
 		println("Done")
 	}
-
-	// procrastinate for an hour to ensure everything was printed out and board does not die
-	//time.Sleep(1 * time.Hour)
 
 }
