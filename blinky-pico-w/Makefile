@@ -1,5 +1,5 @@
 TARGET = pico-w
-SOURCE = blinky.go
+SOURCE = .
 BINARY = flash.uf2
 LDFLAGS = -size short -monitor
 

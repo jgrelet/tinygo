@@ -1,6 +1,6 @@
 TARGET = pico2-w
 SOURCE = main.go
-BINARY = main.uf2
+BINARY = flash.uf2
 LDFLAGS = -size short -monitor
 
 build:

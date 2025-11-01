@@ -5,7 +5,7 @@ version: '3'
 vars:
   target: pico2-w
   stacksize: 8kb
-  DIRS: blinky helloworld  external-button scan-i2c ssd1306 bme68x ds3231 #ntp-client
+  DIRS: helloworld blinky blinky-pico-w external-button scan-i2c ssd1306 bme68x ds3231 ds3231-ntp logs #ntp-client
 
 # example: task build-helloworld
 # example: task flash-blinky
@@ -33,12 +33,12 @@ tasks:
       - tinygo build -o ./{{.ARG}}/flash.uf2 -target={{.target}} -stack-size={{.stacksize}}  ./{{.ARG}}/main.go
 
   buildall:
+    sources:
+          - ./*/main.go
+    generates:
+          - ./*/flash.uf2
     cmds:
-      - for: {var: DIRS}
-        sources:
-          - ./{{.ITEM}}/main.go
-        generates:
-          - ./{{.ITEM}}/flash.uf2
+      - for: {var: DIRS}      
         cmd: tinygo build -o ./{{.ITEM}}/flash.uf2 -target={{.target}} -size short -stack-size={{.stacksize}} -monitor  ./{{.ITEM}}/main.go
 
   flash-*:
